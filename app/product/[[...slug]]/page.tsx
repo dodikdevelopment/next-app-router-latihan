@@ -3,7 +3,13 @@ type ProductPageProps = { params: { slug: string[] } };
 async function getData() {
     // const res = await fetch("https://api.escuelajs.co/api/v1/products");
     const res = await fetch("http://localhost:3000/api/product", {
+        // cache: "force-cache",
         cache: "no-store",
+        next: {
+            tags: ["product"],
+            // revalidate: 30,
+        }
+        
     });
 
     if (!res.ok) {
